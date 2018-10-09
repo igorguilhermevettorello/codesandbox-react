@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Menu from "./Menu";
-import Autores from "./Autores";
+import Autores from "./Autores/Cadastrar";
 
 export default class App extends Component {
   render() {

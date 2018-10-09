@@ -6,14 +6,14 @@ export default class InputCustomizado extends Component {
       <div className="input-group input-group-sm mb5">
         <div className="input-group-prepend">
           <span className="input-group-text" id="inputGroup-sizing-sm">
-            Nome
+            {this.props.label}
           </span>
         </div>
         <input
           type="{this.props.type}"
-          autoComplete="{this.props.autoComplete}"
+          autoComplete="{this.props.autocomplete}"
           className="form-control"
-          aria-label="Nome"
+          aria-label="{this.props.label}"
           aria-describedby="inputGroup-sizing-sm"
           value={this.props.value}
           onChange={this.props.onChange}
