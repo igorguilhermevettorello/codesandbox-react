@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import $ from "jquery";
 
-export default class ListaAutores extends Component {
+export default class Listagem extends Component {
   constructor() {
     super();
     this.state = { lista: [] };
   }
 
-  componentDidMount() {
+  atualizar = () => {
     $.ajax({
       method: "GET",
+      async: false,
       url: "https://projeto-node-api.herokuapp.com/autores",
       success: function(response) {
         this.setState({ lista: response.autores });
@@ -19,6 +20,10 @@ export default class ListaAutores extends Component {
         this.setState({ lista: [] });
       }
     });
+  };
+
+  componentDidMount() {
+    this.atualizar();
   }
 
   render() {

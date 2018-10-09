@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Menu from "./Menu";
-import Autores from "./Autores/Cadastrar";
+import Manutencao from "./Autores/Manutencao";
 
 export default class App extends Component {
   render() {
@@ -11,7 +11,7 @@ export default class App extends Component {
             <Menu />
           </div>
           <div className="col-8 m0 p15">
-            <Autores />
+            <Manutencao />
           </div>
         </div>
       </div>
