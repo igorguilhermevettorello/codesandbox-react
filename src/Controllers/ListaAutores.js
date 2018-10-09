@@ -7,7 +7,7 @@ export default class ListaAutores extends Component {
     this.state = { lista: [] };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     $.ajax({
       method: "GET",
       url: "https://projeto-node-api.herokuapp.com/autores",
@@ -16,6 +16,7 @@ export default class ListaAutores extends Component {
       }.bind(this),
       error: function(error) {
         console.log("error", error);
+        this.setState({ lista: [] });
       }
     });
   }
@@ -33,7 +34,7 @@ export default class ListaAutores extends Component {
         <tbody>
           {this.state.lista.map(autor => {
             return (
-              <tr>
+              <tr key={autor.id.toString()}>
                 <th>{autor.id}</th>
                 <td>{autor.nome}</td>
                 <td>{autor.email}</td>
