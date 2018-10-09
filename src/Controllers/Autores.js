@@ -1,13 +1,9 @@
 import React, { Component } from "react";
+import ListaAutores from "./ListaAutores";
 
 export default class Autores extends Component {
-  constructor () {
+  constructor() {
     super();
-    this.state = {lista:[
-      {id:1, nome:"a", email: "b", password:"c"},
-      {id:2, nome:"aa", email: "bb", password:"cc"}
-    ]};
-    //https://projeto-node-api.herokuapp.com/autores
   }
 
   render() {
@@ -63,28 +59,7 @@ export default class Autores extends Component {
               </button>
             </div>
             <div>
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Email</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    this.state.lista.map(autor => {
-                      return (
-                        <tr>
-                          <th>{autor.id}</th>
-                          <td>{autor.nome}</td>
-                          <td>{autor.email}</td>
-                        </tr>
-                      )
-                    })
-                  }
-                </tbody>
-              </table>
+              <ListaAutores />
             </div>
           </form>
         </div>
