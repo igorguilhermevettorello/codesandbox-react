@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import $ from "jquery";
 import InputPassword from "../../Components/InputPassword";
 import InputText from "../../Components/InputText";
+import MensagemErro from "../../Components/MensagemErro";
 
 export default class Formulario extends Component {
   constructor() {
@@ -43,11 +44,15 @@ export default class Formulario extends Component {
         password: this.state.password
       }),
       success: function(resposta) {
-        console.log("enviado com sucesso");
+        console.log("enviado com sucesso", resposta);
         this.props.callbackAtualizar();
       }.bind(this),
-      error: function(resposta) {
-        console.log("erro");
+      error: function(error) {
+        if (error.status === 400) {
+          new MensagemErro().publicar(error.responseJSON.error);
+        } else {
+          console.log("error", error);
+        }
       }
     });
   };
