@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Menu from "./Menu";
-import Manutencao from "./Autores/Manutencao";
+import AutorBox from "./Autores/AutorBox";
 
 export default class App extends Component {
   render() {
@@ -11,7 +11,7 @@ export default class App extends Component {
             <Menu />
           </div>
           <div className="col-8 m0 p15">
-            <Manutencao />
+            <AutorBox />
           </div>
         </div>
       </div>

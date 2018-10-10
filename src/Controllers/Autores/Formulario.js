@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import $ from "jquery";
-import InputCustomizado from "../../Components/InputCustomizado";
+import InputPassword from "../../Components/InputPassword";
+import InputText from "../../Components/InputText";
 
 export default class Formulario extends Component {
   constructor() {
@@ -43,6 +44,7 @@ export default class Formulario extends Component {
       }),
       success: function(resposta) {
         console.log("enviado com sucesso");
+        this.props.callbackAtualizar();
       }.bind(this),
       error: function(resposta) {
         console.log("erro");
@@ -53,7 +55,7 @@ export default class Formulario extends Component {
   render() {
     return (
       <form method="post">
-        <InputCustomizado
+        <InputText
           id="nome"
           type="text"
           name="nome"
@@ -63,7 +65,7 @@ export default class Formulario extends Component {
           autocomplete="username"
         />
 
-        <InputCustomizado
+        <InputText
           id="email"
           type="text"
           name="email"
@@ -73,7 +75,7 @@ export default class Formulario extends Component {
           autocomplete="username"
         />
 
-        <InputCustomizado
+        <InputPassword
           id="password"
           type="password"
           name="password"

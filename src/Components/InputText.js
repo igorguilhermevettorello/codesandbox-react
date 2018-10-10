@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class InputCustomizado extends Component {
+export default class InputText extends Component {
   render() {
     return (
       <div className="input-group input-group-sm mb5">
@@ -10,7 +10,7 @@ export default class InputCustomizado extends Component {
           </span>
         </div>
         <input
-          type="{this.props.type}"
+          type="text"
           autoComplete="{this.props.autocomplete}"
           className="form-control"
           aria-label="{this.props.label}"
