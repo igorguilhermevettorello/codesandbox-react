@@ -33,6 +33,11 @@
 
 .input-group-text,
 input,
-button {
+button,
+.alert {
   border-radius: 0px !important;
+}
+
+.hidden {
+  display: none;
 }
