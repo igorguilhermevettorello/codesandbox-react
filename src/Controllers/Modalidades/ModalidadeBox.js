@@ -3,7 +3,7 @@ import Formulario from "./Formulario";
 import Listagem from "./Listagem";
 import $ from "jquery";
 
-export default class JogoBox extends Component {
+export default class ModalidadeBox extends Component {
   constructor() {
     super();
     this.state = { lista: [] };
@@ -14,7 +14,7 @@ export default class JogoBox extends Component {
     $.ajax({
       method: "GET",
       async: false,
-      url: "https://projeto-node-api.herokuapp.com/jogos",
+      url: "https://projeto-node-api.herokuapp.com/modalidades",
       success: function(response) {
         this.setState({ lista: response.jogos });
       }.bind(this),
@@ -32,7 +32,7 @@ export default class JogoBox extends Component {
   render() {
     return (
       <div className="card">
-        <div className="card-header">Jogos</div>
+        <div className="card-header">Modalidades</div>
         <div className="card-body">
           <Formulario callbackAtualizar={this.atualizar} />
           <Listagem lista={this.state.lista} />

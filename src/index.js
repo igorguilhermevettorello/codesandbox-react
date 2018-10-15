@@ -6,7 +6,6 @@ import "./styles.css";
 import { Route, Router, Switch } from "react-router-dom";
 import createHistory from "history/createBrowserHistory";
 const history = createHistory();
-
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <Router history={history}>

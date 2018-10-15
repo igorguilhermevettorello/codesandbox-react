@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Menu from "./Menu";
 import AutorBox from "./Autores/AutorBox";
 import JogoBox from "./Jogos/JogoBox";
+import ModalidadeBox from "./Modalidades/ModalidadeBox";
 import Home from "./Home";
 
 export default class App extends Component {
@@ -13,7 +14,7 @@ export default class App extends Component {
             <Menu />
           </div>
           <div className="col-8 m0 p15">
-            <JogoBox />
+            <ModalidadeBox />
           </div>
         </div>
       </div>
