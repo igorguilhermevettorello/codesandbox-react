@@ -21,7 +21,7 @@ export default class AutorBox extends Component {
       error: function(error) {
         console.log("error", error);
         this.setState({ lista: [] });
-      }
+      }.bind(this)
     });
   };
 

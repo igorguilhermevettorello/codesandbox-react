@@ -4,6 +4,8 @@ import InputNumber from "../../Components/InputNumber";
 import InputText from "../../Components/InputText";
 import InputDateTime from "../../Components/InputDateTime";
 import MensagemErro from "../../Components/MensagemErro";
+import MensagemFormulario from "../../Components/MensagemFormulario";
+import PubSub from "pubsub-js";
 
 export default class Formulario extends Component {
   constructor() {
@@ -117,6 +119,11 @@ export default class Formulario extends Component {
         visitante: this.state.visitante
       }),
       success: function(resposta) {
+        PubSub.publish("mensagem-formulario", {
+          divClass: "success",
+          mensagem: "Registro salvo com sucesso."
+        });
+
         this.setState({
           modalidade: "",
           campeonato: "",
@@ -129,6 +136,11 @@ export default class Formulario extends Component {
         this.props.callbackAtualizar();
       }.bind(this),
       error: function(error) {
+        PubSub.publish("mensagem-formulario", {
+          divClass: "danger",
+          mensagem: "Falha ao salvar registro."
+        });
+
         if (error.status === 400) {
           new MensagemErro().publicar(error.responseJSON.error);
         } else {
@@ -141,6 +153,9 @@ export default class Formulario extends Component {
   render() {
     return (
       <form method="post">
+
+        <MensagemFormulario />
+
         <InputText
           id="modalidade"
           type="text"
