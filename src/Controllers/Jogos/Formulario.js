@@ -153,6 +153,7 @@ export default class Formulario extends Component {
   render() {
     return (
       <form method="post">
+
         <MensagemFormulario />
 
         <InputText
