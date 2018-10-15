@@ -1,54 +1,54 @@
 import React, { Component } from "react";
 import $ from "jquery";
-import InputNumber from "../../Components/InputNumber";
+import InputPassword from "../../Components/InputPassword";
 import InputText from "../../Components/InputText";
-import InputDateTime from "../../Components/InputDateTime";
+import Select from "../../Components/Select";
 import MensagemErro from "../../Components/MensagemErro";
-import MensagemFormulario from "../../Components/MensagemFormulario";
-import PubSub from "pubsub-js";
 
 export default class Formulario extends Component {
   constructor() {
     super();
     this.state = {
-      modalidade: ""
+      nome: "",
+      email: "",
+      password: ""
     };
-    this.setModalidade = this.setModalidade.bind(this);
+    this.setNome = this.setNome.bind(this);
+    this.setEmail = this.setEmail.bind(this);
+    this.setPassword = this.setPassword.bind(this);
     this.salvar = this.salvar.bind(this);
   }
 
-  setModalidade(event) {
-    this.setState({ modalidade: event.target.value });
+  setNome(event) {
+    this.setState({ nome: event.target.value });
+  }
+
+  setEmail(event) {
+    this.setState({ email: event.target.value });
+  }
+
+  setPassword(event) {
+    this.setState({ password: event.target.value });
   }
 
   salvar = event => {
     event.preventDefault();
 
     $.ajax({
-      url: "https://projeto-node-api.herokuapp.com/modalidades",
+      url: "https://projeto-node-api.herokuapp.com/autores",
       contentType: "application/json",
       dataType: "json",
       type: "post",
       data: JSON.stringify({
-        modalidade: this.state.modalidade
+        nome: this.state.nome,
+        email: this.state.email,
+        password: this.state.password
       }),
       success: function(resposta) {
-        PubSub.publish("mensagem-formulario", {
-          divClass: "success",
-          mensagem: "Registro salvo com sucesso."
-        });
-
-        this.setState({
-          modalidade: ""
-        });
+        console.log("enviado com sucesso", resposta);
         this.props.callbackAtualizar();
       }.bind(this),
       error: function(error) {
-        PubSub.publish("mensagem-formulario", {
-          divClass: "danger",
-          mensagem: "Falha ao salvar registro."
-        });
-
         if (error.status === 400) {
           new MensagemErro().publicar(error.responseJSON.error);
         } else {
@@ -61,16 +61,44 @@ export default class Formulario extends Component {
   render() {
     return (
       <form method="post">
-        <MensagemFormulario />
+        <InputText
+          id="nome"
+          type="text"
+          name="nome"
+          value={this.state.nome}
+          onChange={this.setNome}
+          label="Nome"
+          autocomplete="username"
+        />
 
         <InputText
-          id="modalidade"
+          id="email"
           type="text"
-          name="modalidade"
-          value={this.state.modalidade}
-          onChange={this.setModalidade}
-          label="Modalidade"
+          name="email"
+          value={this.state.email}
+          onChange={this.setEmail}
+          label="Email"
           autocomplete="username"
+        />
+
+        <InputPassword
+          id="password"
+          type="password"
+          name="password"
+          value={this.state.password}
+          onChange={this.setPassword}
+          label="Senha"
+          autocomplete="current-password"
+        />
+
+        <Select
+          id="password"
+          type="password"
+          name="password"
+          value={this.state.password}
+          onChange={this.setPassword}
+          label="Senha"
+          autocomplete="current-password"
         />
 
         <div className="pull-right mb5">
