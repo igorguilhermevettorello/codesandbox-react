@@ -32,7 +32,7 @@ export default class ModalidadeBox extends Component {
   render() {
     return (
       <div className="card">
-        <div className="card-header">Jogos</div>
+        <div className="card-header">Modalidades</div>
         <div className="card-body">
           <Formulario callbackAtualizar={this.atualizar} />
           <Listagem lista={this.state.lista} />
