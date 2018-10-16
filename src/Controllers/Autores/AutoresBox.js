@@ -3,10 +3,13 @@ import Formulario from "./Formulario";
 import Listagem from "./Listagem";
 import $ from "jquery";
 
-export default class JogoBox extends Component {
-  constructor() {
-    super();
-    this.state = { lista: [] };
+export default class AutoresBox extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lista: [],
+      id: this.props.match.params.id
+    };
     this.atualizar = this.atualizar.bind(this);
   }
 
@@ -14,9 +17,9 @@ export default class JogoBox extends Component {
     $.ajax({
       method: "GET",
       async: false,
-      url: "https://projeto-node-api.herokuapp.com/jogos",
+      url: "https://projeto-node-api.herokuapp.com/autores",
       success: function(response) {
-        this.setState({ lista: response.jogos });
+        this.setState({ lista: response.autores });
       }.bind(this),
       error: function(error) {
         console.log("error", error);
@@ -32,9 +35,9 @@ export default class JogoBox extends Component {
   render() {
     return (
       <div className="card">
-        <div className="card-header">Jogos</div>
+        <div className="card-header">Autores</div>
         <div className="card-body">
-          <Formulario callbackAtualizar={this.atualizar} />
+          <Formulario callbackAtualizar={this.atualizar} id={this.state.id} />
           <Listagem lista={this.state.lista} />
         </div>
       </div>

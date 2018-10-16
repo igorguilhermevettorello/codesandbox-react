@@ -5,8 +5,8 @@ import InputText from "../../Components/InputText";
 import MensagemErro from "../../Components/MensagemErro";
 
 export default class Formulario extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       nome: "",
       email: "",
@@ -16,6 +16,10 @@ export default class Formulario extends Component {
     this.setEmail = this.setEmail.bind(this);
     this.setPassword = this.setPassword.bind(this);
     this.salvar = this.salvar.bind(this);
+  }
+
+  componentDidMount() {
+    console.log("did", this.props.id);
   }
 
   setNome(event) {

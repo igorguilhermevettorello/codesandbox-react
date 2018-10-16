@@ -7,7 +7,10 @@ export default class Select extends Component {
     this.state = {
       invalid: null,
       mensagem: null,
-      options: []
+      options: [
+        { id: 1, descricao: "Futebol" },
+        { id: 2, descricao: "Basquete" }
+      ]
     };
     this.limpar = this.limpar.bind(this);
   }
@@ -36,10 +39,9 @@ export default class Select extends Component {
           onChange={this.props.onChange}
           onFocus={this.limpar}
         >
-          <option selected>Choose...</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          {this.state.options.map((x, y) => (
+            <option key={y.id}>{x.descricao}</option>
+          ))}
         </select>
         <div className="invalid-feedback">{this.state.mensagem}</div>
       </div>
