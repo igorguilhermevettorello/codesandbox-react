@@ -3,7 +3,7 @@ import Formulario from "./Formulario";
 import Listagem from "./Listagem";
 import $ from "jquery";
 
-export default class JogoBox extends Component {
+export default class JogosBox extends Component {
   constructor() {
     super();
     this.state = { lista: [] };
