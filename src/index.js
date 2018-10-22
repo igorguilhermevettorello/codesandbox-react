@@ -8,6 +8,12 @@ import {
   IndexRoute,
   browserHistory
 } from "react-router-dom";
+import "jquery";
+import "popper.js";
+import "bootstrap/dist/js/bootstrap.min.js";
+import "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/react-fontawesome";
+import "@fortawesome/free-solid-svg-icons";
 
 import App from "./Controllers/App";
 import Home from "./Controllers/Home";
@@ -17,6 +23,7 @@ import CompeticoesBox from "./Controllers/Competicoes/CompeticoesBox";
 import JogosBox from "./Controllers/Jogos/JogosBox";
 
 import "./styles.css";
+import "./sistema.css";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
