@@ -1,17 +1,23 @@
-#sidebar {
-  overflow: hidden;
-  z-index: 3;
-}
-#sidebar .list-group {
-  min-width: 400px;
-  background-color: #333;
-  min-height: 100vh;
-}
-#sidebar i {
-  margin-right: 6px;
+/****************/
+.div-menu {
+  position: absolute;
+  margin: 0px;
+  padding: 0px;
+  z-index: 1000;
+  width: 400px;
 }
 
-#sidebar .list-group-item {
+@media (max-width: 768px) {
+  .div-menu {
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    z-index: 1000;
+    width: 80%;
+  }
+}
+
+.div-menu .list-group-item {
   border-radius: 0;
   background-color: #333;
   color: #ccc;
@@ -21,110 +27,46 @@
   white-space: nowrap;
 }
 
-/* highlight active menu */
-#sidebar .list-group-item:not(.collapsed) {
-  background-color: #222;
+.bg-nav {
+  background-color: rgba(
+    17,
+    100,
+    243,
+    1
+  ); /* For browsers that do not support gradients */
+  background-image: linear-gradient(
+    to bottom right,
+    rgba(25, 156, 251, 1),
+    rgba(17, 100, 243, 1)
+  ); /* Standard syntax (must be last) */
 }
 
-/* closed state */
-#sidebar .list-group .list-group-item[aria-expanded="false"]::after {
-  content: " \f0d7";
-  font-family: FontAwesome;
-  display: inline;
-  text-align: right;
-  padding-left: 5px;
+.btn-menu {
+  color: white !important;
+  background-color: transparent !important;
+  border: 1px solid white !important;
+  border-radius: 0px !important;
 }
-
-/* open state */
-#sidebar .list-group .list-group-item[aria-expanded="true"] {
-  background-color: #222;
+.btn-menu:active {
+  color: white !important;
+  background-color: transparent !important;
+  border: 1px solid white !important;
+  border-radius: 0px !important;
 }
-#sidebar .list-group .list-group-item[aria-expanded="true"]::after {
-  content: " \f0da";
-  font-family: FontAwesome;
-  display: inline;
-  text-align: right;
-  padding-left: 5px;
+.btn-menu:hover {
+  color: white !important;
+  background-color: transparent !important;
+  border: 1px solid white !important;
+  border-radius: 0px !important;
 }
-
-/* level 1*/
-#sidebar .list-group .collapse .list-group-item,
-#sidebar .list-group .collapsing .list-group-item {
-  padding-left: 20px;
+.btn-menu:focus {
+  color: white !important;
+  background-color: transparent !important;
+  border: 1px solid white !important;
+  border-radius: 0px !important;
 }
-
-/* level 2*/
-#sidebar .list-group .collapse > .collapse .list-group-item,
-#sidebar .list-group .collapse > .collapsing .list-group-item {
-  padding-left: 30px;
-}
-
-/* level 3*/
-#sidebar .list-group .collapse > .collapse > .collapse .list-group-item {
-  padding-left: 40px;
-}
-
-@media (max-width: 768px) {
-  #sidebar {
-    min-width: 80%;
-    max-width: 80%;
-    overflow-y: auto;
-    overflow-x: visible;
-    transition: all 0.25s ease;
-    /*transform: translateX(-45px);*/
-    position: fixed;
-  }
-
-  #sidebar.show {
-    transform: translateX(0);
-  }
-
-  #sidebar::-webkit-scrollbar {
-    width: 0px;
-  }
-
-  #sidebar,
-  #sidebar .list-group {
-    min-width: 80%;
-    overflow: visible;
-  }
-  /* overlay sub levels on small screens */
-  #sidebar .list-group .collapse.show,
-  #sidebar .list-group .collapsing {
-    position: relative;
-    z-index: 1;
-    width: 190px;
-    top: 0;
-  }
-  #sidebar .list-group > .list-group-item {
-    text-align: center;
-    padding: 0.75rem 0.5rem;
-  }
-  /* hide caret icons of top level when collapsed */
-  #sidebar .list-group > .list-group-item[aria-expanded="true"]::after,
-  #sidebar .list-group > .list-group-item[aria-expanded="false"]::after {
-    display: none;
-  }
-}
-
-.collapse.show {
-  visibility: visible;
-}
-.collapsing {
-  visibility: visible;
-  height: 0;
-  -webkit-transition-property: height, visibility;
-  transition-property: height, visibility;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-}
-.collapsing.width {
-  -webkit-transition-property: width, visibility;
-  transition-property: width, visibility;
-  width: 0;
-  height: 100%;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
+.color-white {
+  color: white;
 }
 
 .bg-nav {
@@ -168,8 +110,4 @@
 .color-white {
   color: white;
   padding-left: 15px;
-}
-
-main {
-  width: 100%;
 }

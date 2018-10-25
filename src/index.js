@@ -22,6 +22,9 @@ import ModalidadeBox from "./Controllers/Modalidades/ModalidadeBox";
 import CompeticoesBox from "./Controllers/Competicoes/CompeticoesBox";
 import JogosBox from "./Controllers/Jogos/JogosBox";
 
+import UsuariosFormulario from "./Controllers/Usuarios/Formulario";
+import UsuariosListagem from "./Controllers/Usuarios/Listagem";
+
 import "./styles.css";
 import "./sistema.css";
 
@@ -32,8 +35,14 @@ ReactDOM.render(
       <Switch>
         <Route path="/" exact={true} />
         <Route path="/home" component={Home} />
-        <Route path="/usuarios/:id" exact={true} component={UsuariosBox} />
-        <Route path="/usuarios" exact={true} component={UsuariosBox} />
+        <Route path="/usuarios/:id" exact={true} component={UsuariosListagem} />
+        <Route path="/usuarios" exact={true} component={UsuariosListagem} />
+        <Route
+          path="/usuario/:id"
+          exact={true}
+          component={UsuariosFormulario}
+        />
+        <Route path="/usuario" exact={true} component={UsuariosFormulario} />
         <Route path="/modalidades/:id" component={ModalidadeBox} />
         <Route path="/modalidades" component={ModalidadeBox} />
         <Route path="/competicoes/:id" component={CompeticoesBox} />

@@ -6,13 +6,31 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 export default class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      mostrar: "div-menu sidebar hidden"
+    };
+    this.mostrar = this.mostrar.bind(this);
   }
+
+  mostrar = () => {
+    if (this.state.mostrar.indexOf("hidden") >= 0) {
+      this.setState({
+        mostrar: "div-menu sidebar show"
+      });
+    } else {
+      this.setState({
+        mostrar: "div-menu sidebar hidden"
+      });
+    }
+  };
+
   render() {
     return (
       <div className="container-fluid">
         <nav className="navbar fixed-top navbar-light bg-nav">
           <div>
             <a
+              onClick={this.mostrar}
               data-target="#sidebar"
               data-toggle="collapse"
               className="btn btn-sm btn-menu"
@@ -46,16 +64,13 @@ export default class App extends Component {
           </div>
         </nav>
 
-        <div className="row d-flex d-md-block flex-nowrap wrapper mt-menu">
-          <div
-            className="col-md-3 float-left col-1 pl-0 pr-0 collapse width show"
-            id="sidebar"
-          >
-            <div className="list-group border-0 card text-center text-md-left">
-              <Menu />
-            </div>
+        <div className="row mt-menu">
+          <div className={this.state.mostrar}>
+            <Menu />
           </div>
-          <main>{this.props.children}</main>
+          <div className="col">
+            <main>{this.props.children}</main>
+          </div>
         </div>
       </div>
     );

@@ -37,7 +37,7 @@ export default class UsuariosBox extends Component {
   };
 
   componentWillReceiveProps = (prevProps, prevState) => {
-    this.setId(prevProps.match.params.id);
+    console.log("componentWillReceiveProps", this.props.match.params.id);
   };
 
   render() {

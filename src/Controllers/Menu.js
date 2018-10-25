@@ -5,24 +5,73 @@ export default class Menu extends Component {
   render() {
     return (
       <ul className="list-group">
-        <li className="list-group-item active">Company</li>
         <li className="list-group-item">
           <Link to="/home">Home</Link>
         </li>
         <li className="list-group-item">
-          <Link to="/usuarios">Usuários</Link>
+          <Link to="">Usuários</Link>
         </li>
         <li className="list-group-item">
-          <Link to="/modalidades">Modalidades</Link>
+          <Link to="/usuario" className="ml20">
+            Cadastrar
+          </Link>
         </li>
         <li className="list-group-item">
-          <Link to="/competicoes">Competições</Link>
+          <Link to="/usuarios" className="ml20">
+            Listar
+          </Link>
+        </li>
+        <li className="list-group-item">
+          <Link to="">Modalidades</Link>
+        </li>
+        <li className="list-group-item">
+          <Link to="/usuario" className="ml20">
+            Cadastrar
+          </Link>
+        </li>
+        <li className="list-group-item">
+          <Link to="/usuarios" className="ml20">
+            Listar
+          </Link>
+        </li>
+        <li className="list-group-item">
+          <Link to="">Competições</Link>
+        </li>
+        <li className="list-group-item">
+          <Link to="/usuario" className="ml20">
+            Cadastrar
+          </Link>
+        </li>
+        <li className="list-group-item">
+          <Link to="/usuarios" className="ml20">
+            Listar
+          </Link>
         </li>
         <li className="list-group-item">
           <Link to="/times">Times</Link>
         </li>
         <li className="list-group-item">
+          <Link to="/usuario" className="ml20">
+            Cadastrar
+          </Link>
+        </li>
+        <li className="list-group-item">
+          <Link to="/usuarios" className="ml20">
+            Listar
+          </Link>
+        </li>
+        <li className="list-group-item">
           <Link to="/jogos">Jogos</Link>
+        </li>
+        <li className="list-group-item">
+          <Link to="/usuario" className="ml20">
+            Cadastrar
+          </Link>
+        </li>
+        <li className="list-group-item">
+          <Link to="/usuarios" className="ml20">
+            Listar
+          </Link>
         </li>
       </ul>
     );

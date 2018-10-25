@@ -1,11 +1,36 @@
 import React, { Component } from "react";
 import ButtonDeletar from "../../Components/ButtonDeletar";
 import ButtonEditar from "../../Components/ButtonEditar";
+import axios from "axios";
 
 export default class Listagem extends Component {
+  // constructor(props) {
+  //   super(props);
+  // }
+
   constructor(props) {
     super(props);
+    this.state = {
+      lista: []
+    };
+    this.atualizar = this.atualizar.bind(this);
   }
+
+  atualizar = () => {
+    axios
+      .get(`https://projeto-node-api.herokuapp.com/usuarios`)
+      .then(res => {
+        this.setState({ lista: res.data.usuarios });
+      })
+      .catch(error => {
+        console.log("error", error);
+        this.setState({ lista: [] });
+      });
+  };
+
+  componentDidMount = () => {
+    this.atualizar();
+  };
 
   render() {
     return (
@@ -19,7 +44,7 @@ export default class Listagem extends Component {
           </tr>
         </thead>
         <tbody>
-          {this.props.lista.map(usuario => {
+          {this.state.lista.map(usuario => {
             return (
               <tr key={usuario.id.toString()}>
                 <th>
@@ -33,7 +58,7 @@ export default class Listagem extends Component {
                   <ButtonEditar
                     id={usuario.id}
                     label="Editar"
-                    controller="usuarios"
+                    controller="usuario"
                   />
                 </th>
                 <th>{usuario.id}</th>

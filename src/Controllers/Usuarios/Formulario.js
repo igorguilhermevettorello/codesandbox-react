@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import PubSub from "pubsub-js";
+import { browserHistory } from "react-router-dom";
 
 import InputPassword from "../../Components/InputPassword";
 import InputText from "../../Components/InputText";
@@ -21,6 +22,7 @@ export default class Formulario extends Component {
     this.setPassword = this.setPassword.bind(this);
     this.salvar = this.salvar.bind(this);
     this.limpar = this.limpar.bind(this);
+    this.getUsuario = this.getUsuario.bind(this);
   }
 
   setLogin = event => {
@@ -48,6 +50,32 @@ export default class Formulario extends Component {
   enviar = event => {
     event.preventDefault();
     this.salvar();
+  };
+
+  getUsuario = id => {
+    axios
+      .get(`https://projeto-node-api.herokuapp.com/usuarios/${id}`)
+      .then(res => {
+        console.log("res", res.data.usuario);
+        this.setState({
+          id: res.data.usuario.id,
+          login: res.data.usuario.login,
+          email: res.data.usuario.email,
+          password: res.data.usuario.password
+        });
+      })
+      .catch(error => {
+        if (error.response.status === 404) {
+          PubSub.publish("mensagem-formulario", {
+            divClass: "danger",
+            mensagem: "Usuário não encontrado."
+          });
+
+          this.props.history.push("/usuario");
+        } else {
+          console.log("error", error.response);
+        }
+      });
   };
 
   salvar = () => {
@@ -87,51 +115,60 @@ export default class Formulario extends Component {
       });
   };
 
+  componentDidMount = () => {
+    if (typeof this.props.match.params.id != "undefined")
+      this.getUsuario(this.props.match.params.id);
+  };
   render() {
     return (
-      <form method="post">
-        <MensagemFormulario />
+      <div className="card">
+        <div className="card-header">Usuários</div>
+        <div className="card-body">
+          <form method="post">
+            <MensagemFormulario />
 
-        <InputText
-          id="login"
-          type="text"
-          name="login"
-          value={this.state.login}
-          onChange={this.setLogin}
-          label="Login"
-          autocomplete="username"
-        />
+            <InputText
+              id="login"
+              type="text"
+              name="login"
+              value={this.state.login}
+              onChange={this.setLogin}
+              label="Login"
+              autocomplete="username"
+            />
 
-        <InputText
-          id="email"
-          type="text"
-          name="email"
-          value={this.state.email}
-          onChange={this.setEmail}
-          label="Email"
-          autocomplete="username"
-        />
+            <InputText
+              id="email"
+              type="text"
+              name="email"
+              value={this.state.email}
+              onChange={this.setEmail}
+              label="Email"
+              autocomplete="username"
+            />
 
-        <InputPassword
-          id="password"
-          type="password"
-          name="password"
-          value={this.state.password}
-          onChange={this.setPassword}
-          label="Senha"
-          autocomplete="current-password"
-        />
+            <InputPassword
+              id="password"
+              type="password"
+              name="password"
+              value={this.state.password}
+              onChange={this.setPassword}
+              label="Senha"
+              autocomplete="current-password"
+            />
 
-        <div className="pull-right mb5">
-          <button
-            type="button"
-            className="btn btn-primary btn-sm"
-            onClick={this.enviar}
-          >
-            Salvar
-          </button>
+            <div className="pull-right mb5">
+              <button
+                type="button"
+                className="btn btn-primary btn-sm"
+                onClick={this.enviar}
+              >
+                Salvar
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     );
   }
 }
